@@ -1,0 +1,41 @@
+{
+  "timetable" : [ {
+    "date" : "2015-02-21T08:30:00+01:00",
+    "label" : "Breakfast and coffee"
+  }, {
+    "date" : "2015-02-21T09:00:00+01:00",
+    "label" : "Introductory presentation",
+    "link" : "https://docs.google.com/a/tregusti.com/presentation/d/1uDIcPsZpLrfi4ZNP43ZrxW3bG2l6dffdqM80WpphqAc"
+  }, {
+    "date" : "2015-02-21T10:00:00.000+01:00",
+    "label" : "Coffee & cookies"
+  }, {
+    "date" : "2015-02-21T10:15:00.000+01:00",
+    "label" : "Polymer basics",
+    "link" : "https://www.polymer-project.org/docs/start/creatingelements.html"
+  }, {
+    "date" : "2015-02-21T10:35:00.000+01:00",
+    "label" : "Workshop: First application"
+  }, {
+    "date" : "2015-02-21T11:20:00.000+01:00",
+    "label" : "Coffee & cookies"
+  }, {
+    "date" : "2015-02-21T11:35:00.000+01:00",
+    "label" : "Workshop: Google maps"
+  }, {
+    "date" : "2015-02-21T12:15:00.000+01:00",
+    "label" : "Lunch"
+  }, {
+    "date" : "2015-02-21T13:15:00.000+01:00",
+    "label" : "Workhop: Code your dream"
+  }, {
+    "date" : "2015-02-21T16:30:00.000+01:00",
+    "label" : "Demo your creation"
+  }, {
+    "date" : "2015-02-21T17:00:00.000+01:00",
+    "label" : "Outro and beer"
+  }, {
+    "date" : "2015-02-21T18:00:00.000+01:00",
+    "label" : "Post-polytechnic beer elsewhere?"
+  } ]
+}

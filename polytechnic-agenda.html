@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>polytechnic-agenda</title>
+
+    <link rel="import" href="components/polymer/polymer.html">
+    <link rel="import" href="components/paper-item/paper-item.html">
+    <link rel="import" href="components/core-ajax/core-ajax.html">
+    <link rel="import" href="components/core-selector/core-selector.html">
+    <link rel="import" href="components/elapsed-time/elapsed-time.html">
+</head>
+<body>
+<polymer-element name="polytechnic-agenda">
+
+    <template>
+        <core-ajax url="https://polytechnic-agenda.firebaseio.com/timetable.json" auto handleAs="json"
+                response="{{timetable}}"></core-ajax>
+
+        <style>
+            core-selector {
+                width: 100%;
+                padding-bottom: 2em;
+            }
+        </style>
+
+        <core-selector>
+            <style>
+
+                paper-item {
+                    width: 100%;
+
+                    color: #888;
+                    transition-property: color, background, box-shadow;
+                    transition-duration: 250ms;
+                    transition-timing-function: ease-in-out;
+                    transition-delay: 250ms, 250ms, 0;
+                }
+
+                paper-item.core-selected {
+                    background: #5265a2;
+                    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3),
+                        0 2px 2px 0 rgba(0, 0, 0, 0.2);
+                    color: #eee;
+
+                    transition-duration: 500ms, 500ms, 1s;
+                    transition-delay: 250ms, 250ms, 500ms;
+                }
+
+                paper-item /deep/ .button-content {
+                    padding: 0.8em 2em;
+                }
+
+                time[is="strf-time"] {
+                    font-size: 26px;
+                }
+
+                elapsed-time {
+                    position: absolute;
+                    bottom: 4px;
+
+                    font-size: 12px;
+                    opacity: 0;
+                    transition: opacity 450ms ease-in-out;
+                }
+
+                paper-item.next-up elapsed-time {
+                    opacity: 1;
+                }
+
+                div[flex] {
+                    font-size: 24px;
+                    margin-left: 24px;
+                }
+            </style>
+            <template repeat="{{item in timetable}}">
+                <paper-item layout horizontal class="{{item.className}}">
+                    <div>
+                        <time is="strf-time" date="{{item.date}}" format="%H:%M"></time>
+                        <br>
+                        <elapsed-time date="{{item.date}}"></elapsed-time>
+                    </div>
+                    <div flex>{{item.label}}</div>
+                </paper-item>
+            </template>
+        </core-selector>
+    </template>
+
+    <script>
+        Polymer( 'polytechnic-agenda', {
+            ready: function () {
+                var that = this;
+                this.coreSelector = this.shadowRoot.querySelector( 'core-selector' );
+                setInterval( this.updateSelected.bind( that ), 1000 );
+            },
+
+            updateSelected: function () {
+                if ( !this.timetable ) return;
+                var now = new Date(), current;
+                for (var i = 0, item; item = this.timetable[ i ]; i++ ) {
+                    item.dateObj = item.dateObj || new Date( item.date );
+                    this.timetable[ i].className = '';
+                    if ( now > item.dateObj ) current = i;
+                    else break;
+                }
+
+                this.coreSelector.selected = current + 1;
+                this.timetable[ i + i].className = 'next-up';
+            }
+        });
+    </script>
+</polymer-element>
+</body>
+</html>

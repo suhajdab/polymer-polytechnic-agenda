@@ -1,0 +1,103 @@
+ <polymer-element name="strf-time" attributes="date,format,locale" extends="time">
+        <script>
+            Polymer( 'strf-time', {
+
+                formatString: function () {
+                    this._date = new Date( this.date );
+                    this._locale = this.locale || navigator.language;
+                    this._format = this.format;
+                    this.textContent = this.strftime( this._date, this._format, this._locale );
+                },
+
+                ready: function () {
+                   this.formatString();
+                },
+
+                observe: {
+                  date: 'formatString',
+                  format: 'formatString',
+                  locale: 'formatString'
+                },
+
+                pad: function ( num ) {
+                    return ( '0' + num ).slice( -2 );
+                },
+
+                strftime: function( time, formatString, locale ) {
+                    var day = time.getDay();
+                    var date = time.getDate();
+                    var month = time.getMonth();
+                    var year = time.getFullYear();
+                    var hour = time.getHours();
+                    var minute = time.getMinutes();
+                    var second = time.getSeconds();
+
+                    return formatString.replace(/%([%aAbBcdeHIlmMpPSwyYZz])/g, function( _arg ) {
+                    var match;
+                    var modifier = _arg[ 1 ];
+                    switch (modifier) {
+                        case '%':
+                            return '%';
+                        case 'a':
+                            return time.toLocaleString( locale, { weekday: 'short' });
+                        case 'A':
+                            return time.toLocaleString( locale, { weekday: 'long' });
+                        case 'b':
+                            return time.toLocaleString( locale, { month: 'short' });
+                        case 'B':
+                            return time.toLocaleString( locale, { month: 'long' });
+                        case 'c':
+                            return time.toString();
+                        case 'd':
+                            return this.pad( date );
+                        case 'e':
+                            return date;
+                        case 'H':
+                            return this.pad( hour );
+                        case 'I':
+                            return this.pad( this.strftime( time, '%l' ));
+                        case 'l':
+                            if ( hour === 0 || hour === 12 ) {
+                                return 12;
+                            } else {
+                                return ( hour + 12 ) % 12;
+                            }
+                            break;
+                        case 'm':
+                            return this.pad( month + 1 );
+                        case 'M':
+                            return this.pad( minute );
+                        case 'p':
+                            if ( hour > 11 ) {
+                                return 'PM';
+                            } else {
+                                return 'AM';
+                            }
+                            break;
+                        case 'P':
+                            if ( hour > 11 ) {
+                                return 'pm';
+                            } else {
+                                return 'am';
+                            }
+                            break;
+                        case 'S':
+                            return this.pad( second );
+                        case 'w':
+                            return day;
+                        case 'y':
+                            return this.pad( year % 100 );
+                        case 'Y':
+                            return year;
+                        case 'Z':
+                            match = time.toString().match(/\((\w+)\)$/);
+                            return match ? match[ 1 ] : '';
+                        case 'z':
+                            match = time.toString().match(/\w([+-]\d\d\d\d) /);
+                            return match ? match[ 1 ] : '';
+                    }
+                    }.bind( this ));
+            }
+            });
+        </script>
+ </polymer-element>
