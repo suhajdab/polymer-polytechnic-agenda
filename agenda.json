@@ -1,5 +1,4 @@
-{
-  "timetable" : [ {
+[ {
     "date" : "2015-02-21T08:30:00+01:00",
     "label" : "Breakfast and coffee"
   }, {
@@ -38,4 +37,3 @@
     "date" : "2015-02-21T18:00:00.000+01:00",
     "label" : "Post-polytechnic beer elsewhere?"
   } ]
-}
