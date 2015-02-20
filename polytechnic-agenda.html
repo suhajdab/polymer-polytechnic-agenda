@@ -14,7 +14,7 @@
 <polymer-element name="polytechnic-agenda">
 
     <template>
-        <core-ajax url="https://polytechnic-agenda.firebaseio.com/timetable.json" auto handleAs="json"
+        <core-ajax url="agenda.json" auto handleAs="json"
                 response="{{timetable}}"></core-ajax>
 
         <style>
@@ -74,7 +74,7 @@
                 }
             </style>
             <template repeat="{{item in timetable}}">
-                <paper-item layout horizontal class="{{item.className}}">
+                <paper-item layout horizontal class="{{item.extraClass}}">
                     <div>
                         <time is="strf-time" date="{{item.date}}" format="%H:%M"></time>
                         <br>
@@ -99,13 +99,16 @@
                 var now = new Date(), current;
                 for (var i = 0, item; item = this.timetable[ i ]; i++ ) {
                     item.dateObj = item.dateObj || new Date( item.date );
-                    this.timetable[ i].className = '';
+                    this.timetable[ i ].extraClass = '';
                     if ( now > item.dateObj ) current = i;
                     else break;
                 }
 
-                this.coreSelector.selected = current + 1;
-                this.timetable[ i + i].className = 'next-up';
+                if ( current !== undefined ) {
+                    this.coreSelector.selected = current + 1;
+                }
+
+                this.timetable[ i ].extraClass = 'next-up';
             }
         });
     </script>
