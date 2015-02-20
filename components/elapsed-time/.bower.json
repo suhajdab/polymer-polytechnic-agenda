@@ -1,0 +1,38 @@
+{
+  "name": "elapsed-time",
+  "version": "0.0.6",
+  "authors": [
+    "miztroh <miztroh@gmail.com>"
+  ],
+  "description": "A Polymer custom element for displaying elapsed time.",
+  "main": "elapsed-time.html",
+  "keywords": [
+    "polymer",
+    "elapsed",
+    "time",
+    "elapsed time",
+    "web-components"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/miztroh/elapsed-time",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#latest"
+  },
+  "_release": "0.0.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.6",
+    "commit": "52dfb63d2b82585efb1d984097640ab7ff387d70"
+  },
+  "_source": "git://github.com/miztroh/elapsed-time.git",
+  "_target": "~0.0.6",
+  "_originalSource": "elapsed-time",
+  "_direct": true
+}
