@@ -1,0 +1,29 @@
+{
+  "name": "polymer-polytechnic-agenda",
+  "version": "0.0.1",
+  "authors": [
+    "Balázs Suhajda <balazs@onereason.eu>"
+  ],
+  "description": "Polymer Polytechnic Malmo event agenda",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "core-ajax": "polymer/core-ajax#~0.5.5",
+    "core-list": "Polymer/core-list#~0.5.4",
+    "core-selector": "polymer/core-selector#~0.5.5",
+    "elapsed-time": "~0.0.6",
+    "font-roboto": "polymer/font-roboto#~0.5.5",
+    "paper-elements": "Polymer/paper-elements#~0.5.4",
+    "paper-item": "polymer/paper-item#~0.5.5",
+    "time-elements": "~0.4.0"
+  }
+}
