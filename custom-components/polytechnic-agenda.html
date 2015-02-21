@@ -65,7 +65,7 @@
                     transition: opacity 450ms ease-in-out;
                 }
 
-                paper-item.next-up elapsed-time {
+                paper-item.core-selected + paper-item elapsed-time {
                     opacity: 1;
                 }
 
@@ -75,7 +75,7 @@
                 }
             </style>
             <template repeat="{{item in timetable}}">
-                <paper-item layout horizontal class="{{item.extraClass}}">
+                <paper-item layout horizontal>
                     <div>
                         <time is="strf-time" date="{{item.date}}" format="%H:%M"></time>
                         <br>
@@ -98,18 +98,13 @@
             updateSelected: function () {
                 if ( !this.timetable ) return;
                 var now = new Date(), current;
-                for (var i = 0, item; item = this.timetable[ i ]; i++ ) {
+                for ( var i = 0, item; item = this.timetable[ i ]; i++ ) {
                     item.dateObj = item.dateObj || new Date( item.date );
-                    this.timetable[ i ].extraClass = '';
                     if ( now > item.dateObj ) current = i;
                     else break;
                 }
 
-                if ( current !== undefined ) {
-                    this.coreSelector.selected = current + 1;
-                }
-
-                this.timetable[ i ].extraClass = 'next-up';
+                this.coreSelector.selected = current + 1;
             }
         });
     </script>
